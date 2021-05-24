@@ -26,7 +26,7 @@ Les noms d'objets SQL suivants sont-ils corrects ?
 | ARRIVÉE    | | |
 | DATE       | | |
 | \_WIDE     | | |
-| «CREATE»   | | |
+| "CREATE"   | | |
 | \#CLIENT   | | |
 | IBM\_DB2   | | |
 | 5e\_avenue | | |
