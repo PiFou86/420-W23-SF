@@ -447,10 +447,3 @@ AFTER nom;
 ```
 
 </details>
-    \subsection{Modifier vos tables}
-    
-    \begin{enumerate}[label=\arabic*)]
-        \item {\color{blue}Clause ALTER TABLE ADD COLUMN}\footnote{Au besoins voir : https://dev.mysql.com/doc/refman/8.0/en/alter-table.html} : Ajouter le champ date de mise à jour aux tables ville et pays.
-        
-        \section{Base de données maintenance}
-        En utilisant votre base de données maintenance, créée à l'exercice 2, procédé aux modifications suivantes : 
