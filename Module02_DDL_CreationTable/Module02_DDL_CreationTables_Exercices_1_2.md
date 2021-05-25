@@ -1,4 +1,4 @@
-# Module 01 - Introduction aux bases de données 2 / 2
+# Module 02 - Création de tables 1 / 2
 
 ---
 
@@ -64,13 +64,13 @@ Choisissez le type de données le mieux approprié pour les cas suivants :
 <details>
     <summary>Solution</summary>
 
-| Type de données           | Raison                                                                   |
-|---------------------------|--------------------------------------------------------------------------|
-| un nom de mois de l’année | VARCHAR(9)                                                               |
-| un numéro de semaine      | TINYINT, paraît suffisant car la numérotation des semaines va de 1 à 53  |
-| un minutage               | FLOAT, permet de définir un minutage décimal                             |
+| Type de données           | Raison                                                                               |
+|---------------------------|--------------------------------------------------------------------------------------|
+| un nom de mois de l’année | VARCHAR(9)                                                                           |
+| un numéro de semaine      | TINYINT, paraît suffisant car la numérotation des semaines va de 1 à 53              |
+| un minutage               | FLOAT, permet de définir un minutage décimal                                         |
 | un numéro de téléphone    | INTEGER OU VARCHAR. INTEGER moins gourmet que VARCHAR mais ne permet que les nombres |
-| un numéro de facture      | Souvent alphanumérique donc VARCHAR                                      |
+| un numéro de facture      | Souvent alphanumérique donc VARCHAR                                                  |
 
 </details>
 
@@ -113,14 +113,14 @@ CREATE DATABASE elevage CHARACTER SET 'utf8';
 USE elevage;
 
 CREATE TABLE Animal (
-	id 				SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-	espece 			VARCHAR(40) NOT NULL,
-	sexe 			CHAR(1),
-	date_naissance 	DATETIME NOT NULL,
-	nom 			VARCHAR(30),
-	commentaires 	TEXT,
-	PRIMARY KEY (id)
-) ENGINE=INNODB;
+    id              SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    espece          VARCHAR(40) NOT NULL,
+    sexe            CHAR(1),
+    date_naissance  DATETIME NOT NULL,
+    nom             VARCHAR(30),
+    commentaires    TEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB;
 ```
 
 #### Insertion simple des enregistrements
@@ -150,13 +150,13 @@ Autre situation : on donne NULL comme valeur d’id, ce qui en principe est impo
 INSERT INTO Animal VALUES (NULL , 'chat', 'F', '2017-09-13 15:02:00', 'Béa', NULL);
 ```
 
-Régardons le résulat :
+Régardons le résultat :
 
 ```sql
 SELECT * FROM Animal;
 ```
 
-![](img/Capture1.png)
+![Résultat requête 2](img/Capture1.png)
 
 ##### Insertion en précisant les colonnes
 
@@ -179,7 +179,7 @@ Ce qui vous donne trois animaux supplémentaires (donc six en tout, il faut suiv
 SELECT * FROM Animal;
 ```
 
-![](img/Capture2.png)
+![Résultat requête 2](img/Capture2.png)
 
 #### Insertion multiple
 
@@ -187,9 +187,9 @@ Si vous avez plusieurs lignes à introduire, il est possible de le faire en une 
 
 ```sql
 INSERT INTO Animal (espece , sexe , date_naissance , nom)
-VALUES ('chien ',  'F',  '2008 -12 -06 05:18:00', 'Caroline '),
-       ('chat ',   'M',  '2008 -09 -11 15:38:00', 'Bagherra '),
-       ('tortue ', NULL, '2010 -08 -23 05:18:00', NULL);
+VALUES ('chien ', 'F',   '2008-12 -06 05:18:00', 'Caroline'),
+       ('chat ',  'M',   '2008-09 -11 15:38:00', 'Bagherra'),
+       ('tortue ', NULL, '2010-08 -23 05:18:00', NULL);
 ```
 
 Bien entendu, vous êtes alors obligé de préciser les mêmes colonnes pour chaque entrée, quitte à mettre NULL pour certaines. Mais avouez que ça fait quand même moins à écrire !
@@ -198,7 +198,7 @@ Bien entendu, vous êtes alors obligé de préciser les mêmes colonnes pour cha
 
 - Créez les instructions nécessaires à l'insertion des enregistrements en précisant le nom des colonnes pour les enregistrements suivants :
 
-| Jour | Machine  | Numéro | Vitesse | Température | Heure | Evénement              |
+| Jour | Machine  | Numéro | Vitesse | Température | Heure | Événement              |
 |------|----------|--------|---------|-------------|-------|------------------------|
 | Ven  | Massicot | 147    |         |             | 21:18 | Défaut de lame         |
 | Sam  | Relieuse | 63     | 16      |             | 16:15 | Arrêt pour maintenance |
