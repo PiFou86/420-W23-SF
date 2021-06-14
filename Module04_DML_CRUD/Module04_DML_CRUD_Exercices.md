@@ -262,6 +262,10 @@ La signification des opérateurs ainsi que leur priorité est présentée ci-apr
 12. Afficher le salaire annuel des vendeurs (sur 12 mois) incluant leur éventuelle commission. (Attention : la somme du salaire et de la commission peut être indéfinie. Si la commission est indéfinie, il faut lui affecter un 0 afin de ne pas rendre indéfini le résultat. On utilisera la fonction IFNULL pour ce faire)
 13. Afficher les noms et salaires des vendeurs en simulant une augmentation de 15 %
 14. Calculez le modulo 100 des salaires des vendeurs, sans utiliser l’opérateur % ni MOD (Voir DIV)
+15. Affichez les employés par ordre alphabétique
+16. Affichez les employéz par ordre décroisant de salaire
+17. Affichez les deux vendeurs qui ont les plus grosses commissions
+18. Affichez le vendeur qui a la deuxième plus grosse commission
 
 <details>
     <summary>Solution</summary>
@@ -296,6 +300,14 @@ SELECT NOM, (SALAIRE + IFNULL(COMMISSION, 0)) * 12 AS 'Salaire annuel' FROM EMPL
 SELECT NOM, SALAIRE * 1.15 AS 'Salaire projeté' FROM EMPLOYES WHERE JOB = 'Vendeur';
 
 SELECT NOM, SALAIRE MOD 100 AS 'Salaire % 100 avec MOD', (SALAIRE - (SALAIRE DIV 100) * 100) AS 'Salaire % 100 sans MOD' FROM EMPLOYES;
+
+SELECT * FROM EMPLOYES ORDER BY NOM;
+
+SELECT * FROM EMPLOYES ORDER BY SALAIRE DESC;
+
+SELECT * FROM EMPLOYES ORDER BY COMMISSION DESC LIMIT 2;
+
+SELECT * FROM EMPLOYES ORDER BY COMMISSION DESC LIMIT 2,1;
 ```
 
 </details>
