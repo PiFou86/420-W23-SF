@@ -9,10 +9,8 @@
 
 ## Directive
 
-##############################
-- Sauvegardez vos réponses texte et vos instructions SQL dans un fichier au nom ```Module_02\Module02_DDL_CreationTables_Exercices_2_2.sql```
+- Sauvegardez vos réponses texte et vos instructions SQL dans un fichier au nom ```Module_03\Module03_DDL_Contraintes.sql```
 - Le corrigé est caché dans les exercices ou présent dans le répertoire de l'exercice
-##############################
 
 ---
 
