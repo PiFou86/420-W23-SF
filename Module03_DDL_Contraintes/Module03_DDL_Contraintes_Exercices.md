@@ -9,7 +9,7 @@
 
 ## Directive
 
-- Sauvegardez vos réponses texte et vos instructions SQL dans un fichier au nom ```Module_03\Module03_DDL_Contraintes.sql```
+- Sauvegardez vos réponses texte et vos instructions SQL dans un fichier au nom ```Module_03\Module03_DDL_Contraintes_Exercices.sql```
 - Le corrigé est caché dans les exercices ou présent dans le répertoire de l'exercice
 
 ---
@@ -131,7 +131,7 @@ FROM Maintenance;
 
 </details>
 
-- À l'aide de la commande ```ALTER TABLE```, Ajoutez la contrainte nommée ```CHK_TemperatureSupMoins30``` :
+- À l'aide de la commande ```ALTER TABLE NomTable ADD [CONSTRAINT [NomContrainte]] CHECK(Contrainte)```, Ajoutez la contrainte nommée ```CHK_TemperatureSupMoins30``` :
   - Qui valide que la colonne ```MntTemperature``` à une valeur supérieure à 60
   - Est-ce que cela fonctionne ?
   - Pourquoi ?
