@@ -28,6 +28,14 @@ FROM
 ORDER BY ville LIMIT 15 OFFSET 0; -- Ou LIMIT 0, 15
 
 SELECT 
+    ville AS 'Ville',
+    mpopul AS 'Population',
+    regadm AS 'Région administrative '
+FROM
+    ville
+ORDER BY ville LIMIT 15 OFFSET 1116; -- 1131 - 15
+
+SELECT 
     id_ville AS 'No de ville',
     ville AS 'Ville',
     mpopul AS 'Population'
@@ -66,3 +74,23 @@ FROM
         INNER JOIN
     province ON ville.id_province = province.id_province;
     
+SELECT 
+    *
+FROM
+    contact
+WHERE
+    email_contact LIKE '%ca';
+
+SELECT 
+    nom_contact
+FROM
+    contact
+WHERE
+    nom_contact LIKE 'b%';
+    
+SELECT 
+    nom_contact
+FROM
+    contact
+WHERE
+    nom_contact LIKE '%a%a%';

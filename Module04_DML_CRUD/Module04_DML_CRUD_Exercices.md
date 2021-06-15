@@ -417,13 +417,15 @@ Afin de mettre en oeuvre les quelques principes que nous avons vus, essayons de 
 
 1. Affichez la population de la ville de "Gaspé". Dans cette requête, n'affichez que les champs suivante : ```id_ville``` avec comme étiquette ```No de ville```, la ```Ville``` et la ```Population``` (```mpopul```).
 2. Affichez les villes en ordre décroissant de population. Dans cette requête, utilisez les champs et étiquettes suivantes : Ville, Population, Région administrative.
-3. Affichez la même requête que la question précédente, mais cette fois n'afficher que les 15 dernières villes en ordre croissant de nom.
-4. Affichez les villes qui ont une population à 0. Dans cette requête, n'affichez que les champs suivante : ```id_ville``` avec comme étiquette ```No de ville```, la ```Ville```, et la ```Population``` (mpopul).
-5. Affichez la même requête que la question précédente, mais cette fois remplacer l'ensemble des champs projetés par l'appel à la fonction suivante :  ```COUNT(id_ville) AS 'Nb de ville ayant 0 habitant'```.
-6. Comparez le résultat des deux dernières requêtes. Que remarquez-vous ?
-7. Affichez les contacts qui ont une adresse courriel dont le domaine est Canadien
-8. Affichez les noms des contacts qui débutent par un "b"
-9. Affichez les noms et prénoms des contacts qui contiennent deux "a" dans leur nom ou leur prénom
+3. Affichez la même requête que la question précédente, mais cette fois n'afficher que les 15 premières villes en ordre croissant de nom.
+4. Affichez la même requête que la question précédente, mais cette fois n'afficher que les 15 dernières villes en ordre décroissant de nom.
+5. Affichez la même requête que la question précédente, mais cette fois n'afficher que les 15 dernières villes en ordre croissant de nom.
+6. Affichez les villes qui ont une population à 0. Dans cette requête, n'affichez que les champs suivante : ```id_ville``` avec comme étiquette ```No de ville```, la ```Ville```, et la ```Population``` (mpopul).
+7. Affichez la même requête que la question précédente, mais cette fois remplacer l'ensemble des champs projetés par l'appel à la fonction suivante :  ```COUNT(id_ville) AS 'Nb de ville ayant 0 habitant'```.
+8. Comparez le résultat des deux dernières requêtes. Que remarquez-vous ?
+9. Affichez les contacts qui ont une adresse courriel dont le domaine est Canadien
+10. Affichez les noms des contacts qui débutent par un "b"
+11. Affichez les noms et prénoms des contacts qui contiennent deux "a" dans leur nom ou leur prénom
 
 <details>
     <summary>Solution</summary>
@@ -455,6 +457,22 @@ FROM
 ORDER BY ville LIMIT 15 OFFSET 0; -- Ou LIMIT 0, 15
 
 SELECT 
+    ville AS 'Ville',
+    mpopul AS 'Population',
+    regadm AS 'Région administrative '
+FROM
+    ville
+ORDER BY ville DESC LIMIT 15 OFFSET 0; -- Ou LIMIT 0, 15
+
+SELECT 
+    ville AS 'Ville',
+    mpopul AS 'Population',
+    regadm AS 'Région administrative '
+FROM
+    ville
+ORDER BY ville LIMIT 15 OFFSET 1116; -- 1131 - 15
+
+SELECT 
     id_ville AS 'No de ville',
     ville AS 'Ville',
     mpopul AS 'Population'
@@ -469,6 +487,8 @@ FROM
     ville
 WHERE
     mpopul = 0;
+    
+-- Nous avons simplement le nombre de villes sans habitant : la reqête a afficher le nombre d'enregistrements à la place d'afficher les enregistrements.
 
 SELECT 
     *
