@@ -410,3 +410,143 @@ FROM
 - Y a-t-il des tables dont les index prennent plus de place (poids) que les données ? Oui : ville, contact, clienthasrepresentant, province, region, representant
 
 </details>
+
+### Exercice 2.2 - Sélections de pratique
+
+Afin de mettre en oeuvre les quelques principes que nous avons vus, essayons de trouver les requêtes correspondantes aux questions suivantes :
+
+1. Affichez la population de la ville de "Gaspé". Dans cette requête, n'affichez que les champs suivante : ```id_ville``` avec comme étiquette ```No de ville```, la ```Ville``` et la ```Population``` (```mpopul```).
+2. Affichez les villes en ordre décroissant de population. Dans cette requête, utilisez les champs et étiquettes suivantes : Ville, Population, Région administrative.
+3. Affichez la même requête que la question précédente, mais cette fois n'afficher que les 15 dernières villes en ordre croissant de nom.
+4. Affichez les villes qui ont une population à 0. Dans cette requête, n'affichez que les champs suivante : ```id_ville``` avec comme étiquette ```No de ville```, la ```Ville```, et la ```Population``` (mpopul).
+5. Affichez la même requête que la question précédente, mais cette fois remplacer l'ensemble des champs projetés par l'appel à la fonction suivante :  ```COUNT(id_ville) AS 'Nb de ville ayant 0 habitant'```.
+6. Comparez le résultat des deux dernières requêtes. Que remarquez-vous ?
+7. Affichez les contacts qui ont une adresse courriel dont le domaine est Canadien
+8. Affichez les noms des contacts qui débutent par un "b"
+9. Affichez les noms et prénoms des contacts qui contiennent deux "a" dans leur nom ou leur prénom
+
+<details>
+    <summary>Solution</summary>
+
+```sql
+SELECT 
+    id_ville AS 'No de ville',
+    ville AS 'Ville',
+    mpopul AS 'Population'
+FROM
+    ville
+WHERE
+    ville = 'Gaspé';
+    
+SELECT 
+    ville AS 'Ville',
+    mpopul AS 'Population',
+    regadm AS 'Région administrative '
+FROM
+    ville
+ORDER BY mpopul DESC;
+
+SELECT 
+    ville AS 'Ville',
+    mpopul AS 'Population',
+    regadm AS 'Région administrative '
+FROM
+    ville
+ORDER BY ville LIMIT 15 OFFSET 0; -- Ou LIMIT 0, 15
+
+SELECT 
+    id_ville AS 'No de ville',
+    ville AS 'Ville',
+    mpopul AS 'Population'
+FROM
+    ville
+WHERE
+    mpopul = 0;
+    
+SELECT 
+    COUNT(id_ville) AS 'Nb de ville ayant 0 habitant'
+FROM
+    ville
+WHERE
+    mpopul = 0;
+
+SELECT 
+    *
+FROM
+    contact
+WHERE
+    email_contact LIKE '%ca';
+
+SELECT 
+    nom_contact
+FROM
+    contact
+WHERE
+    nom_contact LIKE 'b%';
+    
+SELECT 
+    nom_contact
+FROM
+    contact
+WHERE
+    nom_contact LIKE '%a%a%';
+```
+
+</details>
+
+### Exercice 2.3 - Un avant goût de la suite
+
+1. Essayons le code suivant :
+
+```sql
+SELECT COUNT(id_ville) FROM ville; -- Notez la quantité. 
+SELECT COUNT(id_province) FROM province; -- Notez la quantité.
+```
+
+2. Que va-t-il arrivé si vous faite appel aux deux tables dans une même requête ? Testez-le :
+
+```sql
+SELECT ville, mpopul, province
+FROM ville, province; 
+```
+
+3. Combien d'enregistrement vous renvoie cette requête ? Est-ce logique ? Voici le code :
+
+```sql
+SELECT COUNT(ville)
+FROM ville, province;
+```
+
+4. Multiplier 1131 (nos villes) par 63 (nos provinces + des États Américains) votre résultat est de 71 253.
+
+5. Alors qu'est-ce qu'a fait le moteur de base de données ? Il ne savait pas comment faire correspondent les villes et les provinces. Il a donc renvoyé les produits cartésiens. Donc pour chaque ville les 63 provinces.
+
+6. Si j'ai 1 131 villes, qui ont des clés étrangères avec une seule province, combien d'enregistrement devrais-je avoir ?
+
+**Il faut donc aider un peu le moteur de BD et lui dire qu'elle est la relation qui existe entre la table ville et la table province.**
+
+7. À l'aide de la commande DESCRIBE, déterminez quels champs pourraient établir la relation entre les tables ville et province.
+
+8. Maintenant, essayer ce code :
+
+```sql
+SELECT 
+    ville, mpopul, province
+FROM
+    ville
+        INNER JOIN
+    province ON ville.id_province = province.id_province; 
+```
+
+9. Maintenant, calculons le nombre d'enregistrements pour cette requête :
+
+```sql
+SELECT 
+    COUNT(*)
+FROM
+    ville
+        INNER JOIN
+    province ON ville.id_province = province.id_province; 
+```
+
+Vous venez d'établir une relation d'égalité entre la table province et la table ville. Cette clause s'appelle une jointure. Au prochain module nous allons détailler les différentes jointures possibles.
