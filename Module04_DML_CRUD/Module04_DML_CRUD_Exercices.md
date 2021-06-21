@@ -514,7 +514,110 @@ WHERE
 
 </details>
 
-### Exercice 2.3 - Un avant goût de la suite
+### Exercice 2.3 - Explorons la base de données
+
+1. Générez le schéma de la base de données. Arrangez les tables pour rendre le schéma lisible et explorez le
+2. Quelle est la date de l'appel le plus ancien de la base de données (ne sortir qu'un enregistrement)
+3. Quelle est la date de l'appel le plus récent de la base de données (ne sortir qu'un enregistrement)
+4. Quelle est l'heure de l'appel le plus tôt dans la journée (ne sortir qu'un enregistrement)
+5. Quelle est l'heure de l'appel le plus tard dans la journée (ne sortir qu'un enregistrement)
+6. Sélectionnez les appels de la journée du 21 févier 2018 et les afficher par ordre de dates et heures croissantes
+7. Sélectionnez les appels de la journée du 21 févier 2018 AM et les afficher par ordre d'heures croissantes
+8. Sélectionnez le nom de la capitale, de la monnaie, l'indicatif d'appel et la terminaison des noms de domaines pour la Colombie
+9. Sélectionnez le nom de la capitale, de la monnaie, l'indicatif d'appel et la terminaison des noms de domaines pour la France
+10. Sélectionnez les noms de pays qui ont comme terminaison de noms de domaines ".aq"
+11. Sélectionnez les noms de pays qui n'ont pas de terminaison de noms de domaines renseignés
+12. Sélectionnez les rendez-vous effectués durant le mois de février 2018
+13. À partir de la table rendez-vous, évaluez à partir de quand la base de données n'a pas été mise à jours. Validez si votre date semble cohérente avec l'ensemble de données
+
+<details>
+    <summary>Schéma marketing</summary>
+
+![Schéma de la BD marketing](img/marketing_exercice2.png)
+
+</details>
+
+<details>
+    <summary>Solution</summary>
+
+```sql
+SELECT 
+    *
+FROM
+    appel
+ORDER BY appel_date
+LIMIT 1;
+
+SELECT 
+    *
+FROM
+    appel
+ORDER BY appel_date DESC
+LIMIT 1;
+
+SELECT 
+    *
+FROM
+    appel
+ORDER BY appel_heure
+LIMIT 1;
+
+SELECT 
+    *
+FROM
+    appel
+ORDER BY appel_heure DESC
+LIMIT 1;
+
+SELECT 
+    *
+FROM
+    appel
+WHERE
+    appel_date = '2018-02-21'
+ORDER BY appel_heure;
+    
+SELECT 
+    *
+FROM
+    appel
+WHERE
+    appel_date = '2018-02-21'
+        AND appel_heure <= '12:00'
+ORDER BY appel_heure;
+
+SELECT Commo_Name, Capital, `ISO_4217 Currency Name`, `ITU-T_Telephone_Code`, `IANA_Country_Code_TLD`
+FROM tc_pays
+WHERE Commo_Name='Colombia';
+
+SELECT Commo_Name, Capital, `ISO_4217 Currency Name`, `ITU-T_Telephone_Code`, `IANA_Country_Code_TLD`
+FROM tc_pays
+WHERE Commo_Name='France';
+
+SELECT *
+FROM tc_pays
+WHERE `IANA_Country_Code_TLD` = '.aq';
+
+SELECT *
+FROM tc_pays
+WHERE `IANA_Country_Code_TLD` = '';
+
+-- Non demandée pour préparation seulement
+SELECT COUNT(*), IANA_Country_Code_TLD
+FROM tc_pays
+GROUP BY IANA_Country_Code_TLD;
+
+SELECT * 
+FROM rendezvous
+WHERE rdv_date BETWEEN '2018-02-01' AND '2018-02-28'
+ORDER BY rdv_date, rdv_heure;
+
+SELECT * FROM rendezvous WHERE rdv_fait = 0 ORDER BY rdv_date; -- 12 février 2019
+```
+
+</details>
+
+### Exercice 2.4 - Un avant goût de la suite
 
 1. Essayons le code suivant :
 
