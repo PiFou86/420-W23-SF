@@ -9,7 +9,7 @@
 
 ## Directive
 
-- Sauvegardez vos réponses texte et vos instructions SQL dans un fichier au nom ```Module_04\Module04_DML_Exercice_XX.sql``` où XX représente le numéro de l'exerice.
+- Sauvegardez vos réponses texte et vos instructions SQL dans un fichier au nom ```Module_04\Module04_DML_Exercice_XX.sql``` où XX représente le numéro de l'exercice.
 - Le corrigé est caché dans les exercices ou présent dans le répertoire de l'exercice
 
 ---
