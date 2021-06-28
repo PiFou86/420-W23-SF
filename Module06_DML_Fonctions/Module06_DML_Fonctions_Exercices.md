@@ -57,7 +57,7 @@ FROM animal
   INNER JOIN espece 
           ON animal.espece_id = espece.id
 WHERE espece.nom_courant = 'Chat '
-  AND nom LIKE '_a';
+  AND nom LIKE '_a%';
 
 -- OU avec des fonctions
 
