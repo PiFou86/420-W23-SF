@@ -20,6 +20,8 @@ Voici le schéma de la base de données élevage, sur lequel vous allez travaill
 
 ![Schéma base de données "élevage"](img/Capture3.png)
 
+Pour créer votre base de données, utilisez le script [SQL suivant](sql/BD_Elevage.sql)
+
 L'ensemble des exercices sont tirés du livre de Chantal Gribaumont "Administrez vous bases de données avec MySQL 2ième édition." Open Classrooms (Chapitres 20 à 23).
 
 Seule la mise en page est modifiée pour nos besoins.
